@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ice-scaffold-cms
 
 ## 使用
@@ -25,3 +26,7 @@
 ## 效果图
 
 ![screenshot](https://img.alicdn.com/tfs/TB1iHmDDHPpK1RjSZFFXXa5PpXa-2872-1580.png)
+=======
+# kgj
+keguanjiahoutai
+>>>>>>> 2cefbf068de7429edd9439f7c8cbd00afcfb5655
