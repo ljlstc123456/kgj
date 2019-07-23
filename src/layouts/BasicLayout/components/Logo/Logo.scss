@@ -1,0 +1,21 @@
+.logo {
+  max-width: 340px;
+  height: 42px;
+  line-height: 42px;
+  .logo-text {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 36px;
+    color: $color-brand1-6;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+		img{
+			width:200px;
+		}
+  }
+}
+
+
