@@ -335,7 +335,7 @@ export default class ProjectAdd extends Component {
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
-									<FormItem label="物业类型:">
+									<FormItem label="物业类型:" required requiredMessage="必填">
 										<Select placeholder="请选择，住宅/商铺/写字楼（可多选）" style={{width:"100%"}} mode="multiple" name="propertyTypes" hasClear>
 											<Option value="Business">商业</Option>
 											<Option value="Dwelling">住宅</Option>
@@ -344,7 +344,7 @@ export default class ProjectAdd extends Component {
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
-									<FormItem label="所在区域:">
+									<FormItem label="所在区域:" required requiredMessage="必填">
 										<Select name="areaCode" placeholder="请选择" style={{width:"100%"}} hasClear>
 										{
 											this.state.areaList.map(i=>{
@@ -401,7 +401,7 @@ export default class ProjectAdd extends Component {
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
-									<FormItem label="拿地时间:">
+									<FormItem label="拿地时间:" required requiredMessage="必填">
 										<DatePicker placeholder="请选择" style={{width:"100%"}} name="landTime" />
 									</FormItem>
 								</Col>
@@ -409,7 +409,7 @@ export default class ProjectAdd extends Component {
 							
 							<Row>
 								<Col span="6">
-									<FormItem label="产权:">
+									<FormItem label="产权:" required requiredMessage="必填">
 										<Select placeholder="请选择，40年/70年" style={{width:"100%"}} name="propertyRight" hasClear>
 											<Option value="Forty">四十年</Option>
 											<Option value="Seventy">七十年</Option>
@@ -430,17 +430,17 @@ export default class ProjectAdd extends Component {
 							
 							<Row>
 								<Col span="6">
-									<FormItem label="容积率:">
+									<FormItem label="容积率:" required requiredMessage="必填">
 										<Input placeholder="请输入，20字以内" maxLength="20" name="plotRate" />
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
-									<FormItem label="绿化率:" >
+									<FormItem label="绿化率:" required requiredMessage="必填">
 										<Input addonTextAfter="%" placeholder="请输入，20字以内" maxLength="20" name="greeningRate"/>
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
-									<FormItem label="总栋数:" >
+									<FormItem label="总栋数:" required requiredMessage="必填">
 										<Input addonTextAfter="栋" placeholder="请输入，20字以内" maxLength="20" name="totalBuildings"/>
 									</FormItem>
 								</Col>
@@ -448,7 +448,7 @@ export default class ProjectAdd extends Component {
 							
 							<Row>
 								<Col span="6">
-									<FormItem label="交房时间:">
+									<FormItem label="交房时间:" required requiredMessage="必填">
 										<DatePicker placeholder="请选择" style={{width:"100%"}}  name="checkOutTime"/>
 									</FormItem>
 								</Col>
@@ -458,7 +458,7 @@ export default class ProjectAdd extends Component {
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
-									<FormItem label="总户数:" >
+									<FormItem label="总户数:" required requiredMessage="必填">
 										<Input addonTextAfter="户" placeholder="请输入，20字以内" maxLength="20" name="totalHouses"/>
 									</FormItem>
 								</Col>
@@ -471,7 +471,7 @@ export default class ProjectAdd extends Component {
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
-									<FormItem label="停车位:">
+									<FormItem label="停车位:" required requiredMessage="必填">
 										<Input addonTextAfter="个" placeholder="请输入，20字以内" maxLength="20"  name="parkingSpotCount"/>
 									</FormItem>
 								</Col>

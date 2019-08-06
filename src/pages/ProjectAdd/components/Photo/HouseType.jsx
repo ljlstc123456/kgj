@@ -12,7 +12,6 @@ export default class HouseType extends Component {
     super(props);
     this.state = {
 			title:"",
-			headers:{Authorization:localStorage.getItem('kgj_token')},
 			upload:$model.upload,
 			value:{
 				"id":"",
@@ -113,6 +112,12 @@ export default class HouseType extends Component {
 			value:{...this.state.value,...value}
 		})
 	}
+	
+	//刷新token
+	refreshToken = (file, options) => {
+		return {...options,headers:{Authorization:localStorage.getItem('kgj_token')}}
+	}
+	
   render() {
 		const formItemLayout = {
 				labelCol: {
@@ -146,7 +151,7 @@ export default class HouseType extends Component {
 								shape="card"
 								withCredentials={false}
 								style={{display: 'inline-block'}}
-								headers={this.state.headers}
+								beforeUpload={this.refreshToken}
 								onSuccess={this.uploadSuccess}
 								onError={this.uploadError}
 								>
