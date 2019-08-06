@@ -12,7 +12,6 @@ export default class Photo extends Component {
     super(props);
     this.state = {
 			title:"",
-			headers:{Authorization:localStorage.getItem('kgj_token')},
 			upload:$model.upload,
 			value:{
 				"id":"",
@@ -125,6 +124,11 @@ export default class Photo extends Component {
 			this.props.onModifyFinish({...this.state.value})
 		})
 	}
+	
+	//刷新token
+	refreshToken = (file, options) => {
+		return {...options,headers:{Authorization:localStorage.getItem('kgj_token')}}
+	}
   render() {
 		const formItemLayout = {
 				labelCol: {
@@ -166,7 +170,7 @@ export default class Photo extends Component {
 								multiple
 								withCredentials={false}
 								style={{display: 'inline-block'}}
-								headers={this.state.headers}
+								beforeUpload={this.refreshToken}
 								onSuccess={this.uploadSuccess}
 								onError={this.uploadError}
 								>

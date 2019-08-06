@@ -190,8 +190,8 @@ const interval = ()=>{
 		timerInterval = setInterval(()=>{
 			let nowTime = new Date().getTime()
 			if(lastDate - nowTime >= 0 && lastDate-nowTime <60000) {
+				clearInterval(timerInterval)
 				makeGet('/home/token/refresh')({refreshToken:kgj_refresh_token.refreshToken}).then(i=>{
-					clearInterval(timerInterval)
 					setAuth(i.data)
 				}).catch(()=>{
 					goLogin()
@@ -201,8 +201,6 @@ const interval = ()=>{
 	}
 }
 setAuth({}) ;
-
-
 
 export default {
 	setAuth,
