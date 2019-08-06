@@ -65,7 +65,7 @@ export default class FilterTable extends Component {
 	getEmployee(obj={}) {
 		this.setState({
 			loading:true,
-			body:{...obj}
+			body:{...this.state.body,...obj}
 		})
 		$model.getEmployee({...this.state.body,...obj}).then(i=>{
 			this.setState({
