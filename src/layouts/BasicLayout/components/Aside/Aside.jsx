@@ -29,7 +29,7 @@ export default class Aside extends Component {
 		
 		role = JSON.parse(localStorage.getItem('userInfo')).role
 		asideMenuConfigFilter = asideMenuConfig.map(i=>{
-			if(role == 'Super' || (i.name!='设置' && i.name!='客户管理')) {
+			if(role == 'Super' ||i.name!='客户管理') {
 				return i
 			} else {
 				return null
