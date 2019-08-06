@@ -22,7 +22,7 @@ let baseURL = '';
 switch (process.env.NODE_ENV) {
 	case 'development':
 	  //baseURL = '192.168.137.22:9527/clinic_web';
-		baseURL = 'https://api.sunland.vip';
+		baseURL = 'http://sta.api.sunland.vip';
 		break;
 	case 'qa':
 		baseURL = "/api";
@@ -34,7 +34,7 @@ switch (process.env.NODE_ENV) {
 		baseURL = "/api";
 		break;
 	case 'production':
-		baseURL = 'https://api.sunland.vip';
+		baseURL = 'http://sta.api.sunland.vip';
 		break;
 	case 'test1':
 		// baseURL = "http://qa.enterprise.h.idoumeng.cn/front";
