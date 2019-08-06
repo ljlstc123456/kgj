@@ -31,7 +31,7 @@ const TableC = props => {
 					loading={props.loading}
 					rowSelection={{onChange: onChange}}
 				>
-					<Table.Column title="客户姓名" dataIndex="name"/>
+					<Table.Column title="员工姓名" dataIndex="name"/>
 					<Table.Column title="手机号"   dataIndex="phone"/>
 					<Table.Column title="状态" cell={renderState}/>
 					<Table.Column title="员工角色" dataIndex="roleName"/>
