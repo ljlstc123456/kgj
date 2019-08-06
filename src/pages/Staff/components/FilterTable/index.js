@@ -87,6 +87,9 @@ export default class FilterTable extends Component {
 			$model.linkRole({roleId,userIds:this.state.userIds}).then(i=>{
 				//window.location.reload()
 				this.child.onClose() ;
+				this.setState({
+					userIds:[]
+				}) ;
 				this.query(this.state.body) 
 			})
 		}
@@ -120,7 +123,7 @@ export default class FilterTable extends Component {
 			</Modal>
 		
 			<Filter openRole={this.openRole} roleList={this.props.roleList} openOrg={this.openOrg} submit={this.query} orgId={this.props.orgId}/>
-			<TableC selectId={this.selectId} resetPassword={this.resetPassword} dataSource={this.state.dataSource} loading={this.state.loading}/>
+			<TableC selectId={this.selectId} userIds={this.state.userIds}  resetPassword={this.resetPassword} dataSource={this.state.dataSource} loading={this.state.loading}/>
 			{this.state.total > 0?<Pagination pageSize={15} total={this.state.total} style={{textAlign:'right',marginTop:'20px'}} onChange={this.onChange} className="page-demo" />:null}
 		</IceContainer>
 		)

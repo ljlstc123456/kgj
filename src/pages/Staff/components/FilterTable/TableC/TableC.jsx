@@ -23,13 +23,14 @@ const TableC = props => {
 	const onChange = function(args) {
 		props.selectId(args)
   }
+	
 	return (
 		<React.Fragment>
 				<Table 
 				  dataSource={props.dataSource}
 					hasBorder={false}
 					loading={props.loading}
-					rowSelection={{onChange: onChange}}
+					rowSelection={{onChange: onChange,selectedRowKeys:props.userIds}}
 				>
 					<Table.Column title="员工姓名" dataIndex="name"/>
 					<Table.Column title="手机号"   dataIndex="phone"/>
