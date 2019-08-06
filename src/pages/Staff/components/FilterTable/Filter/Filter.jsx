@@ -115,7 +115,7 @@ export default class Filter extends Component {
 					
 						<FormItem label="手机号码:">
 								<FormItem >
-										<Input name="phone" placeholder="输入项目名称"/>
+										<Input name="phone" placeholder="输入手机号"/>
 								</FormItem>
 						</FormItem>
 
