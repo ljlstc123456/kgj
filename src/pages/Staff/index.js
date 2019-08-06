@@ -34,9 +34,13 @@ export default class Staff extends Component {
 	async getOrg(){
 		let result = await OrgTree.data() ;
 		this.setState({
-			orgTree: result
+			orgTree: result,
+		},()=>{
+			this.onSelect("",{node:{props:result[0]}}) ;
 		})
 	}
+	
+	
 	
 	getRoles = ()=> {
 		$model.getRoles().then(i=>{
@@ -81,9 +85,7 @@ export default class Staff extends Component {
 					$model.deleteOrg({id:this.state.selectNode.id}).then(i=>{
 						Message.success('删除成功');
 						this.getOrg() ;
-						this.setState({
-							selectNode:null
-						})
+						this.onSelect("",{node:{props:this.state.orgTree[0]}}) ;
 					})
 				},
         onCancel: () => console.log('cancel')

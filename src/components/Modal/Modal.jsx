@@ -14,6 +14,7 @@ export default class Map extends Component {
 	componentDidMount(){
 		this.props.onRef(this)
 	}
+	
 	open() {
 		this.setState({
 			visible:true

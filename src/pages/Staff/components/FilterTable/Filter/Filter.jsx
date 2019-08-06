@@ -119,8 +119,6 @@ export default class Filter extends Component {
 								</FormItem>
 						</FormItem>
 
-						
-	
 						<FormItem label="员工角色:">
 							<Select name='roleId' style={{width: 143}} id="basic-demo" onChange={this.onChange} onBlur={this.onBlur} onToggleHighlightItem={this.onToggleHighlightItem} defaultValue="jack" aria-label="name is" showSearch hasClear>
 								<Option value=''>全部</Option>

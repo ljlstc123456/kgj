@@ -19,6 +19,7 @@ const instance = axios.create({
 });
 
 let baseURL = '';
+console.log(process) ;
 switch (process.env.NODE_ENV) {
 	case 'development':
 	  //baseURL = '192.168.137.22:9527/clinic_web';
