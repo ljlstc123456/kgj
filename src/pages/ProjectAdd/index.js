@@ -234,9 +234,11 @@ export default class ProjectAdd extends Component {
 		if(!errors){
 			if(this.state.photo.length<=0) {
 				Message.error('请上传相册')
+				return ;
 			}
 			if(this.state.houseType.length<=0) {
 				Message.error('请上传户型图')
+				return ;
 			}
 			let param = {
 				projectId:this.state.projectId,
@@ -249,7 +251,6 @@ export default class ProjectAdd extends Component {
 				Message.success(this.state.projectId?'修改成功':'添加成功')
 				this.props.history.goBack()
 			})
-			
 		}
 		
 	}
@@ -395,7 +396,7 @@ export default class ProjectAdd extends Component {
 							<Row>
 								<Col span="6">
 									<FormItem label="占地面积:" required requiredMessage="必填">
-										<Input addonTextAfter="㎡" placeholder="请输入数字" maxLength="20" name="totalArea" />
+										<Input addonTextAfter="亩" placeholder="请输入数字" maxLength="20" name="totalArea" />
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
@@ -434,12 +435,12 @@ export default class ProjectAdd extends Component {
 							<Row>
 								<Col span="6">
 									<FormItem label="容积率:" required requiredMessage="必填">
-										<Input placeholder="请输入，20字以内" maxLength="20" name="plotRate" />
+										<Input placeholder="请输入数字，20字以内" maxLength="20" name="plotRate" />
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
 									<FormItem label="绿化率:" required requiredMessage="必填">
-										<Input addonTextAfter="%" placeholder="请输入，20字以内" maxLength="20" name="greeningRate"/>
+										<Input addonTextAfter="%" placeholder="请输入数字，20字以内" maxLength="20" name="greeningRate"/>
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
@@ -596,7 +597,7 @@ export default class ProjectAdd extends Component {
 						</IcePanel.Header>
 						<IcePanel.Body>
 						<FormItem>
-						  <Input.TextArea name="sellingPoint"/>
+						  <Input.TextArea name="sellingPoint" autoHeight={{ minRows: 10, maxRows: 10 }}/>
 						</FormItem>
 						</IcePanel.Body>
 					</IcePanel>
@@ -607,7 +608,7 @@ export default class ProjectAdd extends Component {
 						</IcePanel.Header>
 						<IcePanel.Body>
 						<FormItem>
-						  <Input.TextArea name="coupling"/>
+						  <Input.TextArea name="coupling" autoHeight={{ minRows: 10, maxRows: 10 }}/>
 						</FormItem>
 						</IcePanel.Body>
 					</IcePanel>
@@ -618,7 +619,7 @@ export default class ProjectAdd extends Component {
 						</IcePanel.Header>
 						<IcePanel.Body>
 						<FormItem  required requiredMessage="必填">
-						  <Input.TextArea name="reportRules"/>
+						  <Input.TextArea name="reportRules" autoHeight={{ minRows: 10, maxRows: 10 }}/>
 						</FormItem>
 						</IcePanel.Body>
 					</IcePanel>
