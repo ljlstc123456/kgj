@@ -340,6 +340,9 @@ export default class ProjectAdd extends Component {
 											<Option value="Business">商业</Option>
 											<Option value="Dwelling">住宅</Option>
 											<Option value="Office">办公楼</Option>
+											<Option value="Apartment">公寓</Option>
+											<Option value="Villa">别墅</Option>
+											<Option value="Other">其他</Option>
 										</Select>
 									</FormItem>
 								</Col>

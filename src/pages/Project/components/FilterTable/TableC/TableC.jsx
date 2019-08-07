@@ -42,7 +42,10 @@ const TableC = props => {
 		let txt = {
 			'Business':'商业',
 			'Dwelling':'住宅',
-			'Office':'办公楼'
+			'Office':'办公楼',
+			'Other':'其他', 
+			'Apartment':'公寓',
+			'Villa':'别墅'
 		}
 		return record.propertyTypes.map(i=>{
 			return txt[i]
