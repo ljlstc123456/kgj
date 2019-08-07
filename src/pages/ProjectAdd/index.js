@@ -395,7 +395,7 @@ export default class ProjectAdd extends Component {
 							<Row>
 								<Col span="6">
 									<FormItem label="占地面积:" required requiredMessage="必填">
-										<Input addonTextAfter="㎡" placeholder="请输入数字" maxLength="20" name="totalArea" />
+										<Input addonTextAfter="亩" placeholder="请输入数字" maxLength="20" name="totalArea" />
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
