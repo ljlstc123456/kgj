@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Overlay,Icon,Button,Grid,Input,Upload,Form} from '@alifd/next';
+import { Overlay,Icon,Button,Grid,Input,Upload,Form,Message} from '@alifd/next';
 import IceContainer from '@icedesign/container';
 import styles from './index.module.scss';
 import Img from '@icedesign/img';
@@ -84,6 +84,10 @@ export default class HouseType extends Component {
 		},()=>{
 			if(!errors){
 				//this.props.onFinish(this.state.value)
+				if(this.state.value.image == '') {
+					Message.error('请上传图片');
+					return ;
+				}
 				if(this.state.value.id!=''){
 					this.modifyPhoto()
 				} else {
@@ -163,43 +167,31 @@ export default class HouseType extends Component {
 					<Form value={this.state.value} onChange={this.changeValue} style={{marginTop:'10px'}} {...formItemLayout}>
 						<FormItem
 								label="户型名称:"
-								required
-								requiredMessage="必填"
 						>
 							<Input placeholder="请输入，最多20个字" name="name" maxLength="20" />
 						</FormItem>
 						<FormItem
 								label="建筑面积:"
-								required
-								requiredMessage="必填"
 						>
 							<Input placeholder="请输入，最多10个字" name="structureArea" maxLength="10"/>
 						</FormItem>
 						<FormItem
 								label="户型朝向:"
-								required
-								requiredMessage="必填"
 						>
 							<Input placeholder="请输入，最多10个字" name="direction" maxLength="10"/>
 						</FormItem>
 						<FormItem
 								label="总价:"
-								required
-								requiredMessage="必填"
 						>
 							<Input placeholder="请输入，最多10个字" name="totalPrice" maxLength="10"/>
 						</FormItem>
 						<FormItem
 								label="首付:"
-								required
-								requiredMessage="必填"
 						>
 							<Input placeholder="请输入，最多10个字" name="downPayment" maxLength="10"/>
 						</FormItem>
 						<FormItem
 								label="月供:"
-								required
-								requiredMessage="必填"
 						>
 							<Input placeholder="请输入，最多10个字" name="monthlyPayment" maxLength="10"/>
 						</FormItem>

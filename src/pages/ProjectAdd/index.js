@@ -454,7 +454,7 @@ export default class ProjectAdd extends Component {
 								</Col>
 								<Col span="6" offset="1">
 									<FormItem label="层高区间:" required requiredMessage="必填">
-										<Input placeholder="请输入，20字以内" maxLength="20" name="storeyRange"  />
+										<Input addonTextAfter="米" placeholder="请输入，20字以内" maxLength="20" name="storeyRange"  />
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
@@ -467,7 +467,7 @@ export default class ProjectAdd extends Component {
 							<Row>
 								<Col span="6">
 									<FormItem label="物业收费:"  required requiredMessage="必填">
-										<Input placeholder="请输入，20字以内" maxLength="20" name="propertyFee"/>
+										<Input addonTextAfter="元/平米" placeholder="请输入，20字以内" maxLength="20" name="propertyFee"/>
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
@@ -592,7 +592,7 @@ export default class ProjectAdd extends Component {
 							项目卖点
 						</IcePanel.Header>
 						<IcePanel.Body>
-						<FormItem required requiredMessage="必填">
+						<FormItem>
 						  <Input.TextArea name="sellingPoint"/>
 						</FormItem>
 						</IcePanel.Body>
@@ -603,7 +603,7 @@ export default class ProjectAdd extends Component {
 							周边配套
 						</IcePanel.Header>
 						<IcePanel.Body>
-						<FormItem required requiredMessage="必填">
+						<FormItem>
 						  <Input.TextArea name="coupling"/>
 						</FormItem>
 						</IcePanel.Body>
@@ -611,7 +611,7 @@ export default class ProjectAdd extends Component {
 					
 					<IcePanel status="info" style={{marginBottom: '20px'}}>
 						<IcePanel.Header className={styles.header}>
-							报备规则
+							<div><span style={{color:"#FF3000",fontSize:'12px'}}>*</span>报备规则</div>
 						</IcePanel.Header>
 						<IcePanel.Body>
 						<FormItem  required requiredMessage="必填">
