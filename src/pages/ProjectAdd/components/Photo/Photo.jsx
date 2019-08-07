@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Overlay,Icon,Button,Grid,Input,Upload,Form} from '@alifd/next';
+import { Overlay,Icon,Button,Grid,Input,Upload,Form,Message} from '@alifd/next';
 import IceContainer from '@icedesign/container';
 import styles from './index.module.scss';
 import Img from '@icedesign/img';
@@ -101,6 +101,10 @@ export default class Photo extends Component {
 			}
 		},()=>{
 			if(!errors){
+				if(this.state.value.images.length <=0) {
+					Message.error('请上传图片');
+					return ;
+				}
 				//this.props.onFinish(this.state.value)
 				if(this.state.value.id!=''){
 					this.modifyPhoto()
