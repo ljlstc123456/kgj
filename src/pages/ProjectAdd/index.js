@@ -98,6 +98,15 @@ export default class ProjectAdd extends Component {
 				contacts: [...i.data.contacts],
 				baseProject: {...i.data}
 			})
+			if(this.state.contacts.length<=0) {
+				this.setState({
+					contacts: [{
+					"actor": "",
+					"name": "",
+					"tel": ""
+				}]
+				})
+			}
 		})
 	}
 	onClose(obj, key) {
