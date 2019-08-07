@@ -240,9 +240,12 @@ export default class ProjectAdd extends Component {
 				Message.error('请上传户型图')
 				return ;
 			}
+			let contacts = this.state.contacts.filter(i=>{
+				return i.actor&&i.name&&i.tel
+			})
 			let param = {
 				projectId:this.state.projectId,
-				baseProject:{...this.state.baseProject,contacts:[...this.state.contacts]},
+				baseProject:{...this.state.baseProject,contacts:[...contacts]},
 				albumIds:this.state.photo.map(i=>i.id),
 				houseTypeIds:this.state.houseType.map(i=>i.id)
 			}
