@@ -172,15 +172,16 @@ const setAuth = (obj) =>{
 	let {tokenType,accessToken} = obj
 	if(tokenType&&accessToken){
 		localStorage.setItem('kgj_token',tokenType + " " + accessToken)
-		localStorage.setItem('kgj_refresh_token',JSON.stringify(obj))
+		// localStorage.setItem('kgj_refresh_token',JSON.stringify(obj))
 		instance.defaults.headers['Authorization'] = tokenType + " " + accessToken
 	} else if( localStorage.getItem('kgj_token')){
 		instance.defaults.headers['Authorization'] = localStorage.getItem('kgj_token')
 	}
-	clearInterval(timerInterval)
-	interval()
+	// clearInterval(timerInterval)
+	// interval()
 }
-//定时刷新token
+//定时刷新token,暂时不需要了
+
 const interval = ()=>{
 	let kgj_refresh_token = localStorage.getItem('kgj_refresh_token')
 	if(kgj_refresh_token) {
@@ -200,6 +201,8 @@ const interval = ()=>{
 		},3000)
 	}
 }
+
+
 setAuth({}) ;
 
 export default {
