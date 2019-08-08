@@ -428,6 +428,7 @@ export default class ProjectAdd extends Component {
 									<FormItem label="产权:" required requiredMessage="必填">
 										<Select placeholder="请选择，40年/70年" style={{width:"100%"}} name="propertyRight" hasClear>
 											<Option value="Forty">四十年</Option>
+											<Option value="Fifty">五十年</Option>
 											<Option value="Seventy">七十年</Option>
 										</Select>
 									</FormItem>
