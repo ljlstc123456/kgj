@@ -2,17 +2,38 @@ import React, { Component } from 'react';
 import { Overlay,Icon,Button,Grid,Input,Upload,Form,Message} from '@alifd/next';
 import IceContainer from '@icedesign/container';
 import styles from './index.module.scss';
+import UploadCrop from './UploadCrop.jsx' ;
 import Img from '@icedesign/img';
 import $model from '@root/api.js'
 const { Row, Col } = Grid;
 const FormItem = Form.Item;
 const fileBaseUrl = localStorage.getItem('userInfo')?JSON.parse(localStorage.getItem('userInfo')).fileBaseUrl+'/':'' ;
+
+function convertBase64UrlToFile(urlData) {
+
+    const bytes = window.atob(urlData.split(',')[1]);
+
+    const ab = new ArrayBuffer(bytes.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < bytes.length; i++) {
+        ia[i] = bytes.charCodeAt(i);
+    }
+
+    const blob = new Blob([ab], {type: 'image/png'});
+
+    return new File([blob], 'test.png', {type: 'image/png'});
+}
+
 export default class Photo extends Component {
   constructor(props) {
     super(props);
+		
+				
     this.state = {
 			title:"",
 			upload:$model.upload,
+			src:'',
+			visible:false,
 			value:{
 				"id":"",
 				"name": "",
@@ -40,6 +61,7 @@ export default class Photo extends Component {
 		})
 	}
 	
+	
 	componentWillReceiveProps(nextProps){
 		if(nextProps.id=='' && nextProps.image == this.props.image){
 			this.setState({
@@ -55,10 +77,8 @@ export default class Photo extends Component {
 		}
 	}
 	uploadSuccess = (obj,value)=>{
-		//console.log(value)
-		let imgs = value.map((i)=>{
-			return i.response?i.response.data[0]:null
-		})
+		console.log(value,obj)
+		let imgs = obj.data;
 		const imgSet = new Set([...this.state.value.images,...imgs].filter(i=>i));
 		this.setState({
 			value:{
@@ -129,10 +149,10 @@ export default class Photo extends Component {
 		})
 	}
 	
-	//刷新token
-	refreshToken = (file, options) => {
-		return {...options,headers:{Authorization:localStorage.getItem('kgj_token')}}
-	}
+	// //刷新token
+	// refreshToken = (file, options) => {
+	// 	return {...options,headers:{Authorization:localStorage.getItem('kgj_token')}}
+	// }
   render() {
 		const formItemLayout = {
 				labelCol: {
@@ -168,18 +188,14 @@ export default class Photo extends Component {
 									)
 								})
 							}
-							<Upload
+							
+							<UploadCrop
 								action={this.state.upload+"?type=Photo"}
-								shape="card" 
-								multiple
-								withCredentials={false}
 								style={{display: 'inline-block'}}
-								beforeUpload={this.refreshToken}
 								onSuccess={this.uploadSuccess}
 								onError={this.uploadError}
-								>
-								上传图片
-							</Upload>
+							>
+							</UploadCrop>
 						</div>	
 					</div> ;
 					
