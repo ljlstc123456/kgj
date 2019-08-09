@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Overlay,Icon,Button,Grid,Input,Upload,Form,Message} from '@alifd/next';
+import UploadCrop from './UploadCrop.jsx' ;
 import IceContainer from '@icedesign/container';
 import styles from './index.module.scss';
 import Img from '@icedesign/img';
@@ -57,10 +58,7 @@ export default class HouseType extends Component {
 	
 	uploadSuccess = (obj,value)=>{
 		//console.log(value)
-		let imgs = value.map((i)=>{
-			console.log(i)
-			return i.response?i.response.data[0]:null
-		}).filter(i=>i)
+		let imgs = obj.data;
 		this.setState({
 			value:{
 				...this.state.value,
@@ -150,17 +148,14 @@ export default class HouseType extends Component {
 								</div>:null
 							}
 				
-							<Upload
+							
+							
+							<UploadCrop
 								action={this.state.upload+"?type=HouseType"}
-								shape="card"
-								withCredentials={false}
-								style={{display: 'inline-block'}}
-								beforeUpload={this.refreshToken}
 								onSuccess={this.uploadSuccess}
 								onError={this.uploadError}
-								>
-								上传图片
-							</Upload>
+							>
+							</UploadCrop>
 						</div>	
 					</div> ;
 		const houseType = 
