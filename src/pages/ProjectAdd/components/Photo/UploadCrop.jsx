@@ -122,8 +122,10 @@ export default class UploadCrop extends Component {
 	zipLevel = (size)=>{
 		let quality = 1;
 		//图片200k以内不压缩
-    if(size<=0.2){
+    if(size<=0.5){
        quality = 1;
+    }else if(size>0.5&&size<=1){
+       quality = 0.8;
     }else if(size>1&&size<=2){
        quality = 0.6;
     }else if(size>2&&size<=3){
