@@ -435,7 +435,7 @@ export default class ProjectAdd extends Component {
 								</Col>
 								<Col span="6" offset="1">
 									<FormItem label="面积区间:" required requiredMessage="必填">
-										<Input placeholder="请输入，20字以内" maxLength="20" name="areaRange"/>
+										<Input placeholder="请输入，100字以内" maxLength="100" name="areaRange"/>
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
@@ -502,7 +502,7 @@ export default class ProjectAdd extends Component {
 							<Row>
 								<Col span="6">
 									<FormItem label="项目现状:"  required requiredMessage="必填">
-										<Input placeholder="请输入，20字以内" maxLength="20" name="situation"/>
+										<Input placeholder="请输入，100字以内" maxLength="100" name="situation"/>
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">

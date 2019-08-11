@@ -18,16 +18,28 @@ export default class Filter extends Component {
       body: {
       	"name": "",
       	"state": "",
+				"propertyType":"",
+				"areaCode":"",
       	"pageSize": 15,
       	"pageIndex": 1
-      }
+      },
+			areaList:[]
     };
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.props.submit({...this.state.body})
+		this.getArea()
   }
 	
 	
-
+	
+	getArea = ()=>{
+		$model.projectArea().then(res=>{
+			this.setState({
+				areaList:res.data
+			})
+		})
+	}
+	
   handleSubmit(v) {
 		this.setState({
 			body:{...v}
@@ -53,7 +65,28 @@ export default class Filter extends Component {
 								<Option value='Recommended'>推荐</Option>
 							</Select>
 						</FormItem>
-					
+						
+						<FormItem label="物业类型:">
+							<Select placeholder="请选择" style={{width: 143}}  name="propertyType" hasClear>
+								<Option value="Business">商业</Option>
+								<Option value="Dwelling">住宅</Option>
+								<Option value="Office">办公楼</Option>
+								<Option value="Apartment">公寓</Option>
+								<Option value="Villa">别墅</Option>
+								<Option value="Other">其他</Option>
+							</Select>
+						</FormItem>
+						
+						<FormItem label="所在区域:">
+							<Select name="areaCode" placeholder="请选择" style={{width: 143}} hasClear>
+							{
+								this.state.areaList.map(i=>{
+									return <Option key={i.code} value={i.code}>{i.name}</Option>
+								})
+							}
+							</Select>
+						</FormItem>
+						
 						<FormItem>
 								<Form.Submit  type="primary" style={{marginRight:"10px"}} onClick={this.handleSubmit}>查询</Form.Submit>
 								<Form.Reset >重置</Form.Reset>
