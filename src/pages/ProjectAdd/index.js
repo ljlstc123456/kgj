@@ -6,7 +6,7 @@ import Photo from './components/Photo';
 import HouseType from './components/Photo/HouseType';
 import IceContainer from '@icedesign/container';
 import IcePanel from '@icedesign/panel';
-import { Grid, Form, Input, Select,Button, DatePicker, Icon,Dialog,Message } from '@alifd/next';
+import { Grid, Form, Input, Select,Button, DatePicker, Icon,Dialog,Message,Checkbox } from '@alifd/next';
 import Img from '@icedesign/img';
 import styles from './index.module.scss';
 import $model from '@root/api.js';
@@ -61,7 +61,8 @@ export default class ProjectAdd extends Component {
 				"sellingPoint": "",
 				"coupling": "",
 				"reportRules": "",
-				'image':''
+				'image':'',
+				'showPhone':false
 			},
 			"contacts": [
 				{
@@ -633,6 +634,9 @@ export default class ProjectAdd extends Component {
 						<IcePanel.Body>
 						<FormItem  required requiredMessage="必填">
 						  <Input.TextArea name="reportRules" autoHeight={{ minRows: 10, maxRows: 10 }}/>
+						</FormItem>
+						<FormItem>
+							<Checkbox name="showPhone">报备客户时显示客户⼿机号全号（默认显示前三后四）</Checkbox>
 						</FormItem>
 						</IcePanel.Body>
 					</IcePanel>
