@@ -171,7 +171,7 @@ export default class HouseType extends Component {
 							<Input placeholder="请输入，最多10个字" name="structureArea" maxLength="10"/>
 						</FormItem>
 						<FormItem
-								label="户型朝向:"
+								label="单价:"
 						>
 							<Input placeholder="请输入，最多10个字" name="direction" maxLength="10"/>
 						</FormItem>
