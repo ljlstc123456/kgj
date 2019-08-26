@@ -25,11 +25,11 @@ const TableC = props => {
 					hasBorder={false}
 					loading={props.loading}
 				>
-					<Table.Column title="角色名称" dataIndex="name"/>
-					<Table.Column title="角色描述"   dataIndex="description"/>
-					<Table.Column title="关联权限" cell={renderPermission}/>
+					<Table.Column width={200} title="角色名称" dataIndex="name"/>
+					<Table.Column width={150} title="角色描述"   dataIndex="description"/>
+					<Table.Column width={300} title="关联权限" cell={renderPermission}/>
 					<Table.Column title="转报备权限" cell={renderProject}/>
-					<Table.Column title="操作" cell={render}/>
+					<Table.Column width={100} title="操作" cell={render}/>
 				</Table>
 		</React.Fragment>
 	);
