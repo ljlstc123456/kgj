@@ -72,6 +72,7 @@ export default class FilterTable extends Component {
 		return (
 		<IceContainer>
 			<Filter submit={this.query}/>
+			<h3>本次查询共{this.state.total}条数据</h3>
 			<TableC deleteProject={this.deleteProject} dataSource={this.state.dataSource} loading={this.state.loading} toggleState={this.toggleState}/>
 			{this.state.total > 0?<Pagination pageSize={15} total={this.state.total} style={{textAlign:'right',marginTop:'20px'}} onChange={this.onChange} className="page-demo" />:null}
 		</IceContainer>
