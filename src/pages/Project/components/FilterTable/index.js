@@ -11,7 +11,8 @@ export default class FilterTable extends Component {
 	  this.state = {
 			dataSource:[],
 			total:0,
-			loading:false
+			loading:false,
+			body:{}
 		}
 		//this.getProjectList() ;
 		
@@ -44,7 +45,7 @@ export default class FilterTable extends Component {
 	
 	toggleState = (id,state)=>{
 		$model.toggleState({id,state}).then(i=>{
-			this.getProjectList(this.state.param)
+			this.getProjectList()
 		})
 	}
 	
@@ -56,7 +57,7 @@ export default class FilterTable extends Component {
 		    onOk: () => {
 					$model.deleteProject({id:record.id}).then(i=>{
 						Message.success('删除成功');
-						this.getProjectList(this.state.param)
+						this.getProjectList()
 					})
 				},
 		    onCancel: () => console.log('cancel')
