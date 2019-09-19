@@ -22,7 +22,10 @@ export default class FilterTable extends Component {
 		this.setState({
 			loading:true,
 			body:{...this.state.body,...obj}
+		},()=>{
+			window.projectParam = {...this.state.body}
 		})
+		
 		$model.getProjectList({...this.state.body,...obj}).then(i=>{
 			this.setState({
 				dataSource:i.data.rows,

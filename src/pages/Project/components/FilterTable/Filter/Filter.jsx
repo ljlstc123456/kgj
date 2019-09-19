@@ -43,8 +43,6 @@ export default class Filter extends Component {
   handleSubmit(v) {
 		this.setState({
 			body:{...v}
-		},()=>{
-			window.projectParam = {...this.state.body}
 		})
     this.props.submit(v)
 	}
