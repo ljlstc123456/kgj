@@ -15,7 +15,7 @@ export default class Filter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      body: {
+      body: window.projectParam ||{
       	"name": "",
       	"state": "",
 				"propertyType":"",
@@ -43,6 +43,8 @@ export default class Filter extends Component {
   handleSubmit(v) {
 		this.setState({
 			body:{...v}
+		},()=>{
+			window.projectParam = {...this.state.body}
 		})
     this.props.submit(v)
 	}
@@ -92,7 +94,6 @@ export default class Filter extends Component {
 								<Form.Reset >重置</Form.Reset>
 						</FormItem>
 						
-
 						<FormItem style={{display:"block"}}>
 								<Link to='/projectAdd'><Button type="primary">新增</Button></Link>
 						</FormItem>

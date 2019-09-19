@@ -19,11 +19,11 @@ export default class FilterTable extends Component {
 		this.getRole() 
 	}
 	
-	getRole=() =>{
+	getRole=({roleName=""} = {}) =>{
 		this.setState({
 			loading:true
 		})
-		$model.getRoles().then(i=>{
+		$model.getRoles({roleName}).then(i=>{
 			this.setState({
 				dataSource:i.data,
 			},()=>{
@@ -57,7 +57,7 @@ export default class FilterTable extends Component {
 		};
 		return (
 		<IceContainer>
-			<Filter onPlus={this.props.onPlus}/>
+			<Filter onPlus={this.props.onPlus} submit={this.getRole}/>
 			<TableC deleteRole={this.deleteRole} dataSource={this.state.dataSource} loading={this.state.loading} onPlus={this.props.onPlus}/>
 		</IceContainer>
 		)

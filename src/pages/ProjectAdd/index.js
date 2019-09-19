@@ -60,6 +60,7 @@ export default class ProjectAdd extends Component {
 				"developBank": "",
 				"sellingPoint": "",
 				"coupling": "",
+				"teachingSet":"",
 				"reportRules": "",
 				'image':'',
 				'showPhone':false
@@ -623,6 +624,17 @@ export default class ProjectAdd extends Component {
 						<IcePanel.Body>
 						<FormItem>
 						  <Input.TextArea name="coupling" autoHeight={{ minRows: 10, maxRows: 10 }}/>
+						</FormItem>
+						</IcePanel.Body>
+					</IcePanel>
+					
+					<IcePanel status="info" style={{marginBottom: '20px'}}>
+						<IcePanel.Header className={styles.header}>
+							教学配套
+						</IcePanel.Header>
+						<IcePanel.Body>
+						<FormItem>
+						  <Input.TextArea name="teachingSet" autoHeight={{ minRows: 10, maxRows: 10 }}/>
 						</FormItem>
 						</IcePanel.Body>
 					</IcePanel>
