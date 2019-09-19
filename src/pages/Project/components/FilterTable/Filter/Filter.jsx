@@ -41,10 +41,11 @@ export default class Filter extends Component {
 	}
 	
   handleSubmit(v) {
+		let v1 = {...v,pageIndex:1}
 		this.setState({
-			body:{...v}
+			body:{...v1}
 		})
-    this.props.submit(v)
+    this.props.submit(v1)
 	}
   render() {
     const { startValue, endValue, endOpen } = this.state;
