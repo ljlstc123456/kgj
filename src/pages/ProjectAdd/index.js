@@ -375,7 +375,7 @@ export default class ProjectAdd extends Component {
 							<Row>
 								<Col span="6">
 									<FormItem label="均价:" required requiredMessage="必填">
-										<Input placeholder="请输入，最多20字" name="averagePrice" hasClear maxLength="20"/>
+										<Input placeholder="请输入，最多100字" name="averagePrice" hasClear maxLength="100"/>
 									</FormItem>
 								</Col>
 								<Col span="6" offset="1">
@@ -441,7 +441,7 @@ export default class ProjectAdd extends Component {
 								</Col>
 								<Col span="6" offset="1">
 									<FormItem label="价格区间:" required requiredMessage="必填">
-										<Input placeholder="请输入，20字以内" maxLength="20" name="priceRange"/>
+										<Input placeholder="请输入，100字以内" maxLength="100" name="priceRange"/>
 									</FormItem>
 								</Col>
 							</Row>
@@ -701,6 +701,7 @@ export default class ProjectAdd extends Component {
 					</FormItem>
 					<Map 
 						visible={this.state.visibleMap}
+						
 						onFinish={this.mapFinish}
 						onClose={()=>{this.onClose({},'visibleMap')}}
 					/>
