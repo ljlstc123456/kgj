@@ -13,7 +13,6 @@ export default class Map extends Component {
     this.state = {
 			lng:'',
 			lat:'',
-			
 			address:''
 		};
 		this.initMap = this.initMap.bind(this)
