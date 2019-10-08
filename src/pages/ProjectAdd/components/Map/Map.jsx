@@ -3,6 +3,10 @@ import { Overlay,Icon,Button,Form, Input } from '@alifd/next';
 import IceContainer from '@icedesign/container';
 import styles from './index.module.scss';
 const FormItem = Form.Item;
+let searMark = {
+	lng:'',
+	lat:''
+}
 export default class Map extends Component {
   constructor(props) {
     super(props);
@@ -15,9 +19,9 @@ export default class Map extends Component {
 		this.onOk = this.onOk.bind(this)
   }
 	
-	
 	initMap() {
-		var BMap = window.BMap
+		var BMap = window.BMap ;
+		var that = this ;
 		this.map = new BMap.Map("allmap"); // 创建Map实例
 		var myGeo = new BMap.Geocoder(); 
 		this.map.centerAndZoom("南宁", 11); // 初始化地图,设    置中心点坐标和地图级别
@@ -27,21 +31,40 @@ export default class Map extends Component {
 			console.log(e)
 			myGeo.getLocation(e.point, (result)=>{
 				this.setState({
-					lng:e.point.lng,
-					lat:e.point.lat,
+					lng:searMark.lng || e.point.lng,
+					lat:searMark.lat || e.point.lat,
 					address:result.address
+				},()=>{
+					searMark={
+						lng:'',
+						lat:''
+					}
+					this.map.clearOverlays();     
+					var marker = new BMap.Marker(new BMap.Point(this.state.lng, this.state.lat)); // 创建点
+					this.map.addOverlay(marker);
 				})
 			})
-			this.map.clearOverlays();     
-			var marker = new BMap.Marker(new BMap.Point(e.point.lng, e.point.lat)); // 创建点
-			this.map.addOverlay(marker);
+			
 		});
 		
 		//搜索组件
 		this.local = new BMap.LocalSearch(this.map, {
-			renderOptions:{map: this.map}
+			renderOptions:{map: this.map},
+			//点击搜索结果，直接获取结果
+			onMarkersSet:function(a){
+				a.forEach(function(element) {
+					element.marker.addEventListener("click",function(e){
+						var p = element.marker.getPosition();  
+						searMark = {
+							lng:p.lng,
+							lat:p.lat
+						}
+					});
+				});
+			}
 		});
 	}
+		
 	
 	
 	onOk() {

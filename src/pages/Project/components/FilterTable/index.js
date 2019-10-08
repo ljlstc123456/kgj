@@ -47,9 +47,21 @@ export default class FilterTable extends Component {
 	}
 	
 	toggleState = (id,state)=>{
-		$model.toggleState({id,state}).then(i=>{
-			this.getProjectList()
+		Dialog.confirm({
+		    title: '提示',
+		    content: `确认${state == 'Offline'?'下线项目':'上线项目'} ?`,
+		    onOk: () => {
+					$model.toggleState({id,state}).then(i=>{
+						Message.success('操作成功');
+						this.getProjectList()
+					})
+				},
+		    onCancel: () => console.log('cancel')
 		})
+		
+		// $model.toggleState({id,state}).then(i=>{
+		// 	this.getProjectList()
+		// })
 	}
 	
 	//删除项目
