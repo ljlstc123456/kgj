@@ -142,7 +142,7 @@ export default class Role extends Component {
 						<FormItem asterisk={false} label="转报备权限:" required={this.state.value.permissions.filter(i=>i == 'Share').length>0} requiredMessage="请选择项目">
 						  <Select
 							  disabled={this.state.value.permissions.filter(i=>i == 'Share').length<=0}
-							  style={{width:'100%'}}
+							  style={{width:'200px','max-height':'200px',overflow:'auto'}}
 							  name="projectIds"
 								showSearch 
 								placeholder="输入关键字搜索，可多选" 
