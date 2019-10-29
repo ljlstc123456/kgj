@@ -325,4 +325,14 @@ export default {
 	linkOrg:makePost('/employee/org/batch'),
 	//关联角色
 	linkRole:makePost('/employee/role/batch'),
+	
+	//获取启动广告列表
+	adList:makeGet('/home/app/ad/list'),
+	
+	
+	//创建广告
+	createAd:makePost('/home/app/ad'),
+	
+	//修改广告
+	modifyAd:makePut('/home/app/ad'),
 }

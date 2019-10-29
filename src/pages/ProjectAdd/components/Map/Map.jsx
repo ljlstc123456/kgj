@@ -28,16 +28,16 @@ export default class Map extends Component {
 		this.map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
 		this.map.setDefaultCursor("crosshair");
 		this.map.addEventListener("click",(e) => {
-			console.log(e)
 			myGeo.getLocation(e.point, (result)=>{
 				this.setState({
 					lng:searMark.lng || e.point.lng,
 					lat:searMark.lat || e.point.lat,
-					address:result.address
+					address:searMark.address||result.address
 				},()=>{
 					searMark={
 						lng:'',
-						lat:''
+						lat:'',
+						address:''
 					}
 					this.map.clearOverlays();     
 					var marker = new BMap.Marker(new BMap.Point(this.state.lng, this.state.lat)); // 创建点
@@ -54,10 +54,12 @@ export default class Map extends Component {
 			onMarkersSet:function(a){
 				a.forEach(function(element) {
 					element.marker.addEventListener("click",function(e){
-						var p = element.marker.getPosition();  
+						var p = element.marker.getPosition(); 
+						 console.log(element) ;
 						searMark = {
 							lng:p.lng,
-							lat:p.lat
+							lat:p.lat,
+							address:element.address
 						}
 					});
 				});
