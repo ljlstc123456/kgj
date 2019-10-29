@@ -101,6 +101,10 @@ const asideMenuConfig = [
 			{
 			 name: '\u89D2\u8272\u6743\u9650\u7BA1\u7406',
 			 path: '/role',
+			},
+			{
+			 name: 'app启动图',
+			 path: '/startLogo',
 			}
 		],
 	}

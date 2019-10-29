@@ -11,6 +11,7 @@ import Staff from './pages/Staff';
 import Role from './pages/Role';
 import Sign from './pages/Sign';
 import SignDetail from './pages/SignDetail';
+import StartLogo from './pages/StartLogo';
 // import React, { Component } from 'react';
 // 
 // const UserLogin = React.lazy(() => import('./pages/UserLogin'));
@@ -70,6 +71,10 @@ const routerConfig = [
     path: '/role',
     component: Role,
   },
+	{
+	  path: '/startLogo',
+	  component: StartLogo,
+	},
 ];
 
 export default routerConfig;
