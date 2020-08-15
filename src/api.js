@@ -22,7 +22,7 @@ let baseURL = '';
 console.log(process) ;
 switch (process.env.NODE_ENV) {
 	case 'development':
-	  //baseURL = '192.168.137.22:9527/clinic_web';
+	  //baseURL = 'http://192.168.137.22:9527/clinic_web';
 		baseURL = 'https://api.sunland.vip';
 		break;
 	case 'qa':
@@ -51,9 +51,9 @@ switch (process.env.NODE_ENV) {
 instance.interceptors.request.use((async (req) => {
 	let token = localStorage.getItem("kgj_token");
 	if (token || req.url.indexOf('/home/login') > -1) {
-		
+
 	} else {
-		
+
 		//loadingInstance.close() ;
 		location.href= `${location.origin}${location.pathname}#/user/login`
 		//Vue.prototype.$router.push("login") ;
@@ -98,10 +98,10 @@ instance.interceptors.response.use((res) => {
 	if(error.toString().indexOf("401")!=-1){//token过期
 		//console.log(res)
 		goLogin()
-	} 
+	}
 	//Vue.prototype.$loading.close();
 	//请求超时处理
-	
+
 	return Promise.reject();
 });
 
@@ -131,14 +131,14 @@ const makeGet = (url,type="param") => {
         // body...
         return encodeURIComponent(key) + "=" + encodeURIComponent(params[key]);
     }).join("&");
-		
+
 		if(type == 'param') {
 			return instance.get(`${baseURL}${url}?${paramUrl}`)
 		} else {
 			//console.log(params) ;
 			return instance.get(`${baseURL}${url}/${params.id}`)
 		}
-		
+
 	};
 }
 
@@ -152,13 +152,13 @@ const makePut = (url,type="param") => {
 		}else {
 			return instance.put(`${baseURL}${url}/${params.id}`)
 		}
-		
+
 	};
 }
 
 const makeDelete = (url) => {
 	return (params, showLoading = true) => {
-		
+
 		if(showLoading){
 			//loadingInstance = Loading.service({ fullscreen: true });
 		}
@@ -215,7 +215,7 @@ export default {
 	refreshToken: makeGet('/home/token/refresh'),
 	//获取部门
 	getOrg: makeGet('/employee/org'),
-	
+
 	//修改部门
 	modifyOrg: makePut('/employee/org'),
 	//创建部门
@@ -246,16 +246,16 @@ export default {
 	modifyRole: makePut('/employee/role'),
 	//删除角色
 	deleteRole: makeDelete('/employee/role'),
-	
+
 	//上传图片地址
 	upload: `${baseURL}/home/upload`,
-	
+
 	//获取区域列表
 	projectArea: makeGet('/project/area'),
-	
+
 	//获取角色下关联的权限
 	getPermissionByRole: makeGet('/employee/role/permission','path'),
-	
+
 	//新增相册
 	addAlbum: makePost('/project/album'),
 	//获取相册详情
@@ -264,7 +264,7 @@ export default {
 	modifyAlbum: makePut('/project/album'),
 	//删除相册
 	deleteAlbum: makeDelete('/project/album'),
-	
+
 	//创建户型
 	createHouse:makePost('/project/housetype'),
 	//获取户型详情
@@ -273,7 +273,7 @@ export default {
 	modifyHouse: makePut('/project/housetype'),
 	//删除户型
 	deleteHouse: makeDelete('/project/housetype'),
-	
+
 	//创建项目
 	createProject: makePost('/project'),
 	//获取项目列表
@@ -284,21 +284,21 @@ export default {
 	getProjectS:makeGet('/project/simple'),
 	//修改项目
 	modifyProject:makePut('/project'),
-	
+
 	//修改状态
 	toggleState: makePut('/project/state'),
 	//删除项目
 	deleteProject: makeDelete('/project'),
-	
-	
+
+
 	//客户列表
 	getCustomerList:makePost('/customer/back'),
 	//客户详情
 	getCustomer:makeGet('/customer','path'),
 	//客户报备信息
 	getCustomerReport: makeGet('/customer/report','path'),
-	
-	
+
+
 	//获取签到活动列表
 	getSignList: makeGet('/sign/activity'),
 	//修改活动状态
@@ -311,28 +311,28 @@ export default {
 	getActivityProject: makeGet('/sign/activity/project','path'),
 	//获取签到列表
 	getSignEmpList: makePost('/sign/back'),
-	
+
 	//下载excel模板
 	downLoadExcel:makePost('/employee/template'),
-	
+
 	//导入员工
 	importStaff:`${baseURL}/employee/import`,
-	
+
 	//导出客户
 	exportCustom:makePost('/customer/export'),
-	
+
 	//关联部门
 	linkOrg:makePost('/employee/org/batch'),
 	//关联角色
 	linkRole:makePost('/employee/role/batch'),
-	
+
 	//获取启动广告列表
 	adList:makeGet('/home/app/ad/list'),
-	
-	
+
+
 	//创建广告
 	createAd:makePost('/home/app/ad'),
-	
+
 	//修改广告
 	modifyAd:makePut('/home/app/ad'),
 }
