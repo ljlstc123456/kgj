@@ -70,3 +70,13 @@
 	border:1px dashed #ccc;
 	overflow: hidden;
 }
+
+
+.outerImg{
+  padding-top:20px;
+  display: flex;
+  .img{
+    margin-right:20px;
+    position: relative;
+  }
+}

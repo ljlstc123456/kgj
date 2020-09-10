@@ -4,9 +4,10 @@ import CustomBreadcrumb from '../../components/CustomBreadcrumb';
 import Map from './components/Map';
 import Photo from './components/Photo';
 import HouseType from './components/Photo/HouseType';
+import OuterImg from './components/Photo/outerImgs' ;
 import IceContainer from '@icedesign/container';
 import IcePanel from '@icedesign/panel';
-import { Grid, Form, Input, Select,Button, DatePicker, Icon,Dialog,Message,Checkbox } from '@alifd/next';
+import { Grid, Form, Input, Select,Button, DatePicker, Icon,Dialog,Message,Checkbox,Tab } from '@alifd/next';
 import Img from '@icedesign/img';
 import styles from './index.module.scss';
 import $model from '@root/api.js';
@@ -63,6 +64,8 @@ export default class ProjectAdd extends Component {
 				"teachingSet":"",
 				"reportRules": "",
 				'image':'',
+        'marketControlImage':"",
+        'suiteImage':"",
 				'showPhone':false
 			},
 			"contacts": [
@@ -84,7 +87,7 @@ export default class ProjectAdd extends Component {
 		this.validateAllFormField = this.validateAllFormField.bind(this)
 		this.formChange = this.formChange.bind(this)
 		this.getArea()
-		
+
   }
 	componentDidMount(){
 		if(this.state.projectId){
@@ -175,14 +178,14 @@ export default class ProjectAdd extends Component {
 			photoId:id
 		})
 	}
-	
+
 	onOpenHouse(key,id="") {
 		this.setState({
 			[key]: true,
 			houseId:id
 		})
 	}
-	
+
 	getArea = ()=>{
 		$model.projectArea().then(res=>{
 			this.setState({
@@ -190,7 +193,7 @@ export default class ProjectAdd extends Component {
 			})
 		})
 	}
-	
+
 	//设置宣传图
 	setImg = (url)=>{
 		//alert(url)
@@ -217,7 +220,7 @@ export default class ProjectAdd extends Component {
 		    onCancel: () => console.log('cancel')
 		})
 	}
-	
+
 	//删除户型
 	deleteHouse = (obj) =>{
 		Dialog.confirm({
@@ -241,7 +244,7 @@ export default class ProjectAdd extends Component {
 		this.setState({
 			baseProject:{...val}
 		})
-		
+
 		if(!errors){
 			if(this.state.photo.length<=0) {
 				Message.error('请上传相册')
@@ -266,7 +269,7 @@ export default class ProjectAdd extends Component {
 				this.props.history.goBack()
 			})
 		}
-		
+
 	}
 	formChange(value) {
 	  this.setState({
@@ -303,6 +306,25 @@ export default class ProjectAdd extends Component {
 		}).filter(i=>i)
 		this.setContacts(contacts)
 	}
+
+  //设置销控图
+  setMarketControlImage = (imgs) => {
+    this.setState({
+      baseProject:{
+        ...this.state.baseProject,
+        marketControlImage:imgs.join(",")
+      }
+    })
+  }
+  //设置配套图
+  setSuiteImage = (imgs) => {
+    this.setState({
+      baseProject:{
+        ...this.state.baseProject,
+        suiteImage:imgs.join(",")
+      }
+    })
+  }
   render() {
   	const breadcrumb = [
   	  { text: '项目管理', link: '#/project' },
@@ -324,7 +346,7 @@ export default class ProjectAdd extends Component {
 		const onToggleHighlightItem = function (item, type) {
 			console.log(item, type);
 		};
-		
+
 		const dataSource = [
 			{value: '10001', label: '新盘'},
 			{value: 10002, label: '地铁房'},
@@ -334,8 +356,8 @@ export default class ProjectAdd extends Component {
       <div className="project-page">
   		  <CustomBreadcrumb dataSource={breadcrumb} />
         {/* 筛选和表格组合 */}
-				<Form 
-					value={this.state.baseProject} 
+				<Form
+					value={this.state.baseProject}
 					onChange={this.formChange}
 				>
 					<IcePanel status="info" style={{marginBottom: '20px'}}>
@@ -390,18 +412,18 @@ export default class ProjectAdd extends Component {
 									</FormItem>
 								</Col>
 							</Row>
-							
+
 							<Row>
 								<Col span="6">
 									<FormItem label="项目标签:" required requiredMessage="必填">
 										<Input placeholder="请输入,最多6个字" name="tag" maxLength="6" />
 									</FormItem>
 								</Col>
-								
+
 							</Row>
 						</IcePanel.Body>
 					</IcePanel>
-					
+
 					<IcePanel status="info" style={{marginBottom: '10px'}}>
 						<IcePanel.Header className={styles.header}>
 							基础信息
@@ -424,7 +446,7 @@ export default class ProjectAdd extends Component {
 									</FormItem>
 								</Col>
 							</Row>
-							
+
 							<Row>
 								<Col span="6">
 									<FormItem label="产权:" required requiredMessage="必填">
@@ -446,7 +468,7 @@ export default class ProjectAdd extends Component {
 									</FormItem>
 								</Col>
 							</Row>
-							
+
 							<Row>
 								<Col span="6">
 									<FormItem label="容积率:" required requiredMessage="必填">
@@ -464,7 +486,7 @@ export default class ProjectAdd extends Component {
 									</FormItem>
 								</Col>
 							</Row>
-							
+
 							<Row>
 								<Col span="6">
 									<FormItem label="交房时间:" required requiredMessage="必填">
@@ -482,7 +504,7 @@ export default class ProjectAdd extends Component {
 									</FormItem>
 								</Col>
 							</Row>
-							
+
 							<Row>
 								<Col span="6">
 									<FormItem label="物业收费:"  required requiredMessage="必填">
@@ -500,7 +522,7 @@ export default class ProjectAdd extends Component {
 									</FormItem>
 								</Col>
 							</Row>
-							
+
 							<Row>
 								<Col span="6">
 									<FormItem label="项目现状:"  required requiredMessage="必填">
@@ -518,7 +540,7 @@ export default class ProjectAdd extends Component {
 									</FormItem>
 								</Col>
 							</Row>
-							
+
 							<Row>
 								<Col span="6">
 									<FormItem label="物业企业:"  required requiredMessage="必填">
@@ -530,12 +552,12 @@ export default class ProjectAdd extends Component {
 										<Input placeholder="请输入，50字以内" maxLength="50" name="developBank"/>
 									</FormItem>
 								</Col>
-								
+
 							</Row>
-							
+
 						</IcePanel.Body>
 					</IcePanel>
-					
+
 					<IcePanel status="info" style={{marginBottom: '20px',minHeight:'200px'}}>
 						<IcePanel.Header className={styles.header}>
 							项目相册
@@ -565,12 +587,12 @@ export default class ProjectAdd extends Component {
 										</h2>
 										{/*<p>建面74平米 朝向东北</p>*/}
 									</div>
-								</div>	
+								</div>
 							)
 						})}
 						</IcePanel.Body>
 					</IcePanel>
-					
+
 					<IcePanel status="info" style={{marginBottom: '20px',minHeight:'200px'}}>
 						<IcePanel.Header className={styles.header}>
 							户型信息
@@ -600,12 +622,21 @@ export default class ProjectAdd extends Component {
 										</h2>
 										<p>建面{i.structureArea} 朝向{i.direction}</p>
 									</div>
-								</div>	
+								</div>
 							)
 						})}
 						</IcePanel.Body>
 					</IcePanel>
-					
+
+          <IcePanel status="info" style={{marginBottom: '20px',minHeight:'200px'}}>
+          	<IcePanel.Body className={styles.imgContain}>
+              <Tab navStyle={{fontSize:'18px'}}>
+                <Tab.Item title="销控图" key="1">{this.state.baseProject.marketControlImage && <OuterImg imgs={this.state.baseProject.marketControlImage.split(',')} changeImg={this.setMarketControlImage} type={'MarketControl'}/>}</Tab.Item>
+                <Tab.Item title="配套图" key="2">{this.state.baseProject.suiteImage && <OuterImg imgs={this.state.baseProject.suiteImage.split(',')} changeImg={this.setSuiteImage} type={'Suite'}/>}</Tab.Item>
+              </Tab>
+            </IcePanel.Body>
+          </IcePanel>
+
 					<IcePanel status="info" style={{marginBottom: '20px'}}>
 						<IcePanel.Header className={styles.header}>
 							项目卖点
@@ -616,7 +647,7 @@ export default class ProjectAdd extends Component {
 						</FormItem>
 						</IcePanel.Body>
 					</IcePanel>
-					
+
 					<IcePanel status="info" style={{marginBottom: '20px'}}>
 						<IcePanel.Header className={styles.header}>
 							周边配套
@@ -627,7 +658,7 @@ export default class ProjectAdd extends Component {
 						</FormItem>
 						</IcePanel.Body>
 					</IcePanel>
-					
+
 					<IcePanel status="info" style={{marginBottom: '20px'}}>
 						<IcePanel.Header className={styles.header}>
 							教学配套
@@ -638,7 +669,7 @@ export default class ProjectAdd extends Component {
 						</FormItem>
 						</IcePanel.Body>
 					</IcePanel>
-					
+
 					<IcePanel status="info" style={{marginBottom: '20px'}}>
 						<IcePanel.Header className={styles.header}>
 							<div><span style={{color:"#FF3000",fontSize:'12px'}}>*</span>报备规则</div>
@@ -652,7 +683,7 @@ export default class ProjectAdd extends Component {
 						</FormItem>
 						</IcePanel.Body>
 					</IcePanel>
-					
+
 					<IcePanel status="info" style={{marginBottom: '20px'}}>
 						<IcePanel.Header className={styles.header}>
 							联系现场
@@ -672,7 +703,7 @@ export default class ProjectAdd extends Component {
 								</Col>
 								<Col span="4">
 									<FormItem >
-											<Input 
+											<Input
 											 value={this.state.contacts[index].name}
 											 onChange={(v)=>{this.changeContact(index,'name', v)}}
 											 placeholder="姓名" />
@@ -699,18 +730,33 @@ export default class ProjectAdd extends Component {
 						})}
 						</IcePanel.Body>
 					</IcePanel>
-					
+
+          <IcePanel status="info" style={{marginBottom: '20px'}}>
+          	<IcePanel.Header className={styles.header}>
+          		到访保护期
+          	</IcePanel.Header>
+          	<IcePanel.Body>
+              <Row>
+                <Col span="4">
+                <FormItem>
+                  <Input addonTextAfter="天" placeholder="请输入" maxLength="20" name="protectDays"/>
+                </FormItem>
+                </Col>
+              </Row>
+            </IcePanel.Body>
+          </IcePanel>
+
 					<FormItem>
 						<Form.Submit validate type="primary" onClick={this.validateAllFormField}>提交</Form.Submit>
 					</FormItem>
-					<Map 
+					<Map
 						visible={this.state.visibleMap}
-						
+
 						onFinish={this.mapFinish}
 						onClose={()=>{this.onClose({},'visibleMap')}}
 					/>
-					
-					<Photo 
+
+					<Photo
 						visible={this.state.visiblePhoto}
 						image={this.state.baseProject.image}
 						setImg={this.setImg}
@@ -719,18 +765,18 @@ export default class ProjectAdd extends Component {
 						onAddFinish={this.onAddFinish}
 						onModifyFinish={this.onModifyFinish}
 					/>
-					
+
 					<HouseType
 						visible={this.state.visibleHouse}
 						id={this.state.houseId}
 						onClose={()=>{this.onClose({},'visibleHouse')}}
 						onAddFinish={this.onAddFinishHouse}
 						onModifyFinish={this.onModifyFinishHouse}
-					
+
 					/>
 				</Form>
       </div>
-  		
+
     );
   }
 }

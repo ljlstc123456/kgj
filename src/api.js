@@ -24,6 +24,7 @@ switch (process.env.NODE_ENV) {
 	case 'development':
 	  //baseURL = 'http://192.168.137.22:9527/clinic_web';
 		baseURL = 'https://api.sunland.vip';
+    baseURL = 'http://sta.api.sunland.vip';
 		break;
 	case 'qa':
 		baseURL = "/api";
