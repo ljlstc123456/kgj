@@ -34,7 +34,7 @@
     "is-hotkey": "^0.1.1",
     "md5js": "^1.0.7",
     "moment": "^2.23.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "prop-types": "^15.5.8",
     "react": "^16.4.1",
     "react-cropper": "^1.2.0",
